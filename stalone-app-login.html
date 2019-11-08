@@ -1,0 +1,38 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../cells-credentials-form/cells-credentials-form.html">
+<link rel="import" href="../cells-molecule-spinner/cells-molecule-spinner.html">
+<link rel="import" href="stalone-app-login-styles.html">
+
+<dom-module id="stalone-app-login">
+    <template>
+        <style include="stalone-app-login-styles stalone-app-login-shared-styles"></style>
+        <slot></slot>
+        <!-- Login form -->
+        <cells-credentials-form hidden$="[[_loading]]"
+
+          clear-id-icon="[[clearIcon]]"
+          clear-login-name-icon="[[clearIcon]]"
+          clear-pwd-icon="[[clearIcon]]"
+
+          toggle-pwd-icon="[[showPwdIcon]]"
+          toggle-pwd-icon-toggled="[[hidePwdIcon]]"
+
+          user-name="{{userName}}"
+          user-password="{{userPassword}}"
+          user-id="[[userId]]"
+          gender = "{{gender}}"
+          on-login="_onFormSubmit"
+        >
+        </cells-credentials-form>
+
+        <template is="dom-if" if="[[_loading]]">
+          <cells-molecule-spinner
+            message="[[_loadingText]]"
+            finish="[[loggedIn]]"
+          >
+          </cells-molecule-spinner>
+        </template>
+
+      </template>
+  <script src="stalone-app-login.js"></script>
+</dom-module>
